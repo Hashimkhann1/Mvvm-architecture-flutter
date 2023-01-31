@@ -19,8 +19,8 @@ class FetchDataExcption extends AppExcaption {
 }
 
 
-class BabRequestExcption extends AppExcaption {
-  BabRequestExcption([String? message]) : super(message,'Invaid Request');
+class BadRequestExcption extends AppExcaption {
+  BadRequestExcption([String? message]) : super(message,'Invaid Request');
 }
 
 class UnauthorizedExcption extends AppExcaption {
