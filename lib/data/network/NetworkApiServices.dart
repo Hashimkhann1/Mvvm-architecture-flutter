@@ -52,6 +52,6 @@ class NetworkApiService extends BaseApiServices{
         throw FetchDataExcption('Erroe accurd while cummunating with server' + response.statusCode.toString());
     }
   }
-  
+
   
 }
