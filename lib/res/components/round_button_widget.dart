@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mvvm_architecture/utils/colors.dart';
+import 'package:mvvm_architecture/res/colors.dart';
 
 class RoundButtonWidget extends StatelessWidget {
   String? title;
@@ -16,12 +16,12 @@ class RoundButtonWidget extends StatelessWidget {
       onTap: onPress,
       child: Container(
         alignment: Alignment.center,
-        height: 36.0,
+        height: 44.0,
         width: 200.0,
         decoration: BoxDecoration(
             color: AppColors.greenColor,
             borderRadius: BorderRadius.circular(10.0)),
-        child: loading ? CircularProgressIndicator() : Text(
+        child: loading ? CircularProgressIndicator(color: AppColors.whiteColor,) : Text(
           title.toString(),
           style: TextStyle(
             color: AppColors.whiteColor

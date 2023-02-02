@@ -12,7 +12,7 @@ class NetworkApiService extends BaseApiServices{
   Future getGetApiResponce(String url) async {
     dynamic responceJson;
     try{
-      final response = await http.get(Uri.parse(url)).timeout(Duration(seconds: 10));
+      final response = await http.get(Uri.parse(url)).timeout(const Duration(seconds: 10));
       responceJson = returnResponce(response);
     }on SocketException{
       throw FetchDataExcption('No Internet Connection');
@@ -23,18 +23,16 @@ class NetworkApiService extends BaseApiServices{
 
   @override
   Future getpostApiResponce(String url , dynamic data) async {
-
     dynamic responceJson;
     try{
       Response response = await post(
         Uri.parse(url),
         body: data
-      ).timeout(Duration(seconds: 10));
+      ).timeout(const Duration(seconds: 10));
       responceJson = returnResponce(response);
     }on SocketException{
       throw FetchDataExcption('No Internet Connection');
     }
-
     return responceJson;
   }
 

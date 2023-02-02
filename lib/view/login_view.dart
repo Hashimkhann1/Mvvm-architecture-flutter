@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:mvvm_architecture/utils/components/round_button_widget.dart';
 import 'package:mvvm_architecture/utils/routes/routes_name.dart';
+// import 'package:mvvm_architecture/utils/routes/routes_name.dart';
 import 'package:mvvm_architecture/utils/utils.dart';
+import 'package:mvvm_architecture/view_model/auth_view_model.dart';
+import 'package:provider/provider.dart';
+import '../res/components/round_button_widget.dart';
 
 
 class LoginView extends StatefulWidget {
@@ -33,12 +36,12 @@ class _LoginViewState extends State<LoginView> {
 
   @override
   Widget build(BuildContext context) {
-    
+    final authViewModel = Provider.of<AuthViewModel>(context);
     final screenHighth = MediaQuery.of(context).size.height;
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Login'),
+        title: const Text('Login'),
       ),
       body: SafeArea(
         child: Column(
@@ -52,7 +55,7 @@ class _LoginViewState extends State<LoginView> {
               onFieldSubmitted: (value) {
                Utils.fieldFocusChage(context, emailFocusNode, passwordFocusNode);
               },
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 hintText: "Email",
                 labelText: 'Email',
                 prefixIcon: Icon(Icons.alternate_email)
@@ -67,7 +70,7 @@ class _LoginViewState extends State<LoginView> {
                 decoration: InputDecoration(
                     hintText: "Password",
                     labelText: 'Password',
-                    prefixIcon: Icon(Icons.lock_open_outlined),
+                    prefixIcon: const Icon(Icons.lock_open_outlined),
                     suffixIcon: InkWell(onTap: () {
                       _obsurePassword.value = !_obsurePassword.value;
                     }, child: Icon(!_obsurePassword.value ? Icons.visibility : Icons.visibility_off))
@@ -78,17 +81,28 @@ class _LoginViewState extends State<LoginView> {
               );
             }),
             SizedBox(height: screenHighth * 0.070,),
-            RoundButtonWidget(title: 'Login',onPress: (){
+            RoundButtonWidget(title: 'Login',loading: authViewModel.loading, onPress: (){
               if(emailController.text.isEmpty){
-                Utils.flutterFlashBarMessage('Please enter Gmail', context);
+                Utils.flutterFlashBarMessage('Please enter Gmail', Colors.black26, context);
               }else if(passwordController.text.isEmpty){
-                Utils.flutterFlashBarMessage('Please enter Password', context);
+                Utils.flutterFlashBarMessage('Please enter Password', Colors.black26, context);
               }else if(passwordController.text.length < 6){
-                Utils.flutterFlashBarMessage('Please enter 6 digit password', context);
+                Utils.flutterFlashBarMessage('Please enter 6 digit password', Colors.black26, context);
               }else{
-
+                Map data = {
+                  'email' : emailController.text.toString(),
+                  'password' : passwordController.text.toString(),
+                };
+                authViewModel.loginApi(data , context);
               }
-            },)
+            },),
+            const SizedBox(height: 20.0,),
+            InkWell(
+                onTap: () {
+                  Navigator.pushNamed(context, RoutesName.signup);
+                }
+                , child: const Text("Don't have account? Sign up")),
+            
           ],
         ),
       )

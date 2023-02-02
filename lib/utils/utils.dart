@@ -22,20 +22,20 @@ class Utils {
     );
   }
 
-  static void flutterFlashBarMessage(String messgae , BuildContext context) {
+  static void flutterFlashBarMessage(String messgae , Color backgrounColor, BuildContext context) {
     showFlushbar(context: context, flushbar: Flushbar(
       forwardAnimationCurve: Curves.decelerate,
       margin: const EdgeInsets.symmetric(horizontal: 20 , vertical: 12),
       padding: const EdgeInsets.all(10),
       message: messgae,
-      backgroundColor: Colors.red,
+      backgroundColor: backgrounColor,
       borderRadius: BorderRadius.circular(20),
       // title: "SAD",
-      duration: Duration(seconds: 3),
+      duration: const Duration(seconds: 3),
       flushbarPosition: FlushbarPosition.TOP,
       reverseAnimationCurve: Curves.easeInOut,
       positionOffset: 20,
-      icon: Icon(Icons.error,color: Colors.white,size: 28,),
+      icon: const Icon(Icons.error,color: Colors.white,size: 28,),
     )..show(context)
     );
   }
