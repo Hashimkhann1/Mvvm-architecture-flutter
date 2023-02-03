@@ -24,7 +24,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
+      body: const Center(
         child: Text('Spalsh screen',style: TextStyle(fontSize: 20.0,fontWeight: FontWeight.w600),),
       )
     );
