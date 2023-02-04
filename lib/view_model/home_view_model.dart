@@ -23,7 +23,7 @@ class HomeViewModel with ChangeNotifier {
     }).onError((error, stackTrace) {
       setUserList(ApiResponce.error(error.toString()));
       if(kDebugMode){
-        print(error);
+        print('>>>>>' + error.toString());
       }
     });
   }

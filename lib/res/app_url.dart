@@ -7,5 +7,5 @@ class AppUrl{
 
   static var loginUrl = baseUrl + '/api/login';
   static var registerUrl = baseUrl + '/api/register';
-  static var userListUril = baseUrl + ' /api/users?page=2';
+  static var userListUril = 'https://reqres.in/api/users';
 }
